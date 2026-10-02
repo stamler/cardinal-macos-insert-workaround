@@ -1,0 +1,35 @@
+{
+  "title": "Temporary Cardinal macOS Insert workaround",
+  "rules": [
+    {
+      "description": "Cardinal Native only: Control+Option+I inserts a Tracker row (temporary Pugl workaround)",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": [
+                "control",
+                "option"
+              ]
+            }
+          },
+          "to_after_key_up": [
+            {
+              "shell_command": "exec \"$HOME/.config/karabiner/cardinal-insert-workaround/cardinal-insert\" --karabiner >> \"$HOME/.config/karabiner/cardinal-insert-workaround/run.log\" 2>&1"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^studio\\.kx\\.distrho\\.cardinal\\.native$"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
